@@ -53,7 +53,17 @@
                             <div class="form-group">
                                 <label for="password">Hasło</label>
                                 <input type="password" class="form-control" name="Hasło" id="Hasło" placeholder="Hasło">
+                            </div>                       						
+                        
+                            <div class="form-group">
+                                <label for="sel1">Typ konta:</label>
+                                    <select class="form-control" id="Typ">
+                                        <option>Klient</option>
+                                        <option>Admin</option>
+ 
+                                    </select>
                             </div>
+                        
                             <button type="submit" class="btn btn-primary">LOGIN</button>
                             <a href="<?php echo site_url('Register\registerUser') ?>" class="btn btn-link">Register</a>
                             <a href="<?php echo site_url('dashboard') ?>" class="btn btn-link">guest</a>
