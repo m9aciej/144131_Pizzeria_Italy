@@ -22,7 +22,7 @@ class Register extends CI_Controller {
         redirect('Register/registerUser');
             
     } else {
-        $this->load->view('layouts\register_view');
+        $this->load->view('layouts/register_view');
         }
     }
 }

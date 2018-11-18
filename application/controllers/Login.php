@@ -6,30 +6,30 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('Telefon','Telefon','required');
         $this->form_validation->set_rules('Hasło','Hasło','required');
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('layouts\login_view');
+            $this->load->view('layouts/login_view');
         } 
         else {
+                   
+        $Telefon = $_POST["Telefon"]; // ' ' = " "
+        $Hasło = $_POST["Hasło"];
+        $Typ = $_POST["Typ"];
+        
+
+        $this->load->model('Model_user');
+        $uzytkownik = $this->Model_user->checkLoginUser($Telefon, $Hasło, $Typ);
             
-           $Telefon = $_POST['Telefon'];
-           $Hasło = $_POST['Hasło'];
-            
-           $this->db->select("*");
-           $this->db->from("klienci");
-           $this->db->where(array('TELEFON' => $Telefon , 'HASŁO' => $Hasło));
-           $query = $this->db->get();
-           $user = $query->row();
-           
-           if ($user->TELEFON) {
+                       
+        if ($uzytkownik->TELEFON) {
                     //login message
                     $this->session->set_flashdata("success","You are logged in");
                     //set session variables
-                    $_SESSION['user_logged'] = TRUE;
-                    $_SESSION['phone'] = $user->TELEFON;
-                    $_SESSION['admin'] = FALSE;
+                    //$_SESSION['user_logged'] = TRUE;
+                    $_SESSION['phone'] = $uzytkownik->TELEFON;
+                    $_SESSION['typ'] = $Typ;
                     //redirect
                     redirect('dashboard','refresh');
-            }
-            else {
+         }
+         else {
                 //wrong credentials
                 $this->session->set_flashdata('error','Username or Password invalid!');
                 redirect('Login/loginUser');

@@ -57,10 +57,9 @@
                         
                             <div class="form-group">
                                 <label for="sel1">Typ konta:</label>
-                                    <select class="form-control" id="Typ">
+                                    <select class="form-control" id="Typ" name="Typ" >  
                                         <option>Klient</option>
                                         <option>Admin</option>
- 
                                     </select>
                             </div>
                         
