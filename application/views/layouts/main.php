@@ -21,7 +21,7 @@
         <link rel="stylesheet" href="<?php echo site_url('resources/css/_all-skins.min.css');?>">
     </head>
     
-    <body class="hold-transition skin-green-light layout-boxed sidebar-mini">
+    <body class="hold-transition skin-yellow layout-boxed sidebar-mini">
         <div class="wrapper">
             <header class="main-header">
                 <!-- Logo -->
@@ -78,7 +78,15 @@
                                 <i class="fa fa-dashboard"></i> <span>Strona główna</span>
                             </a>
                         </li>
-                     
+                        
+                        <?php if (!czyKlient() && !czyAdmin()): ?>
+						<li>
+                            <a href="<?php echo site_url('produkt') ?>">
+                                <i class="fa fa-book"></i> <span>Menu</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        
                     </ul>
                 </section>
                 <!-- /.sidebar -->
