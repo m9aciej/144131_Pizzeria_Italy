@@ -87,6 +87,32 @@
                         </li>
                         <?php endif; ?>
                         
+                        <?php if (czyAdmin()): ?>
+						<li>
+                            <a href="<?php echo site_url('produkt') ?>">
+                                <i class="fa fa-book"></i> <span>Menu</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        
+                        <?php if (czyAdmin()): ?>
+						<li>
+                            <a href="<?php echo site_url('klient') ?>">
+                                <i class="fa fa-user"></i> <span>Klienci</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        
+                        <?php if (czyAdmin()): ?>
+						<li>
+                            <a href="<?php echo site_url('zamowienie') ?>">
+                                <i class="fa fa-book"></i> <span>Zamówienia</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        
+                        
+                        
                     </ul>
                 </section>
                 <!-- /.sidebar -->
