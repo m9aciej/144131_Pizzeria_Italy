@@ -87,6 +87,23 @@
                         </li>
                         <?php endif; ?>
                         
+                        <?php if (czyKlient()): ?>
+						<li>
+                            <a href="<?php echo site_url('produkt') ?>">
+                                <i class="fa fa-book"></i> <span>Menu</span>
+                            </a>
+                        </li>
+                                                  
+                        <?php endif; ?>
+                        
+                         <?php if (czyKlient()): ?>
+						<li>
+                            <a href="<?php echo site_url('zamowienia') ?>">
+                                <i class="fa fa-book"></i> <span>Złóż zamówienie</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        
                         <?php if (czyAdmin()): ?>
 						<li>
                             <a href="<?php echo site_url('produkt') ?>">

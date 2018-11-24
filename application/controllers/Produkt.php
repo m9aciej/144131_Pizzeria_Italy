@@ -15,7 +15,7 @@ class Produkt extends CI_Controller{
     {
         if(czyKlient())
         {
-            return FALSE;
+            return $this->menuZalogowany();
         }
 
         if(czyAdmin())
@@ -45,6 +45,20 @@ class Produkt extends CI_Controller{
         $data['_view'] = 'produkty/menuNiezalogowany_view';
         $this->load->view('layouts/main',$data);
     }
+
+    public function menuZalogowany()
+    {
+        if(!czyKlient())
+        {
+            redirect('dashboard'); // return to dashboard 
+        }
+        
+        $data['produkty'] = $this->Model_produkt->getItems();
+ 
+           
+        $data['_view'] = 'produkty/menuZalogowany_view';
+        $this->load->view('layouts/main',$data);
+    }
     
     public function menuAdministrator()
     {
@@ -71,7 +85,7 @@ class Produkt extends CI_Controller{
         
         $this->load->library('form_validation');
 
-		$this->form_validation->set_rules('nazwa','Nazwa','required|max_length[255]');
+		$this->form_validation->set_rules('nazwa','Nazwa','required|max_length[255]|is_unique[produkty.NAZWA]');
 		$this->form_validation->set_rules('skladniki','Skladniki','required|max_length[255]|is_unique[produkty.OPIS]');
 		$this->form_validation->set_rules('cena','Cena','numeric|required|max_length[255]');
 		
@@ -81,9 +95,8 @@ class Produkt extends CI_Controller{
                 
             'NAZWA' => $this->input->post('nazwa'),
             'OPIS' => $this->input->post('skladniki'),
-            'CENA' =>$this->input->post('cena'),
-            
-        );
+            'CENA' =>$this->input->post('cena'),            
+            );
             
             $this->Model_produkt->addProdukt($data);
             redirect('produkt/index');
@@ -97,12 +110,39 @@ class Produkt extends CI_Controller{
         
     }
     
-    public function edit()
+    public function edit($id)
     {
         if(!czyAdmin())
         {
             redirect('dashboard'); // return to dashboard 
         }
+        
+        $this->load->library('form_validation');
+        $data['produkty'] = $this->Model_produkt->getProdukt($id);
+        
+        $this->form_validation->set_rules('nazwa','Nazwa','required|max_length[255]');
+		$this->form_validation->set_rules('skladniki','Skladniki','required|max_length[255]');
+		$this->form_validation->set_rules('cena','Cena','numeric|required|max_length[255]');
+		
+		if($this->form_validation->run())     
+        {   
+            $data2 = array(
+                
+            'NAZWA' => $this->input->post('nazwa'),
+            'OPIS' => $this->input->post('skladniki'),
+            'CENA' =>$this->input->post('cena'),
+            );
+            
+            $this->Model_produkt->updateProdukt($id, $data2);            
+            redirect('produkt');
+        }
+        else
+        {
+                $data['_view'] = 'produkty/edytujProdukt_view';
+                $this->load->view('layouts/main',$data);
+        }
+        
+             
         
     }
     

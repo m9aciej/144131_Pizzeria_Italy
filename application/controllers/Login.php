@@ -31,7 +31,7 @@ class Login extends CI_Controller {
          }
          else {
                 //wrong credentials
-                $this->session->set_flashdata('error','Username or Password invalid!');
+                $this->session->set_flashdata('error','Telefon lub hasło jest błędne!');
                 redirect('Login/loginUser');
             }
             

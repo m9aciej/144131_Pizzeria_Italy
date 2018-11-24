@@ -15,16 +15,25 @@ class Model_produkt extends CI_Model {
         $this->db->insert('produkty',$data);
     }
 
-    function updateProdukt($id,$params)
+    public function removeProdukt($id)
+    {
+        $this->db->delete('produkty',array('ID_PRODUKT'=>$id));
+    }
+    
+    public function getProdukt($id)
+    {
+        return $this->db->get_where('produkty',array('ID_PRODUKT'=>$id))->row_array();
+    }
+    
+    public function updateProdukt($id, $data)
     {
         $this->db->where('ID_PRODUKT',$id);
         $this->db->update('produkty',$data);
     }
-
-    function removeProdukt($id)
-    {
-        return $this->db->delete('produkty',array('ID_PRODUKT'=>$id));
-    }
     
+  
+    
+    
+
    
 }
