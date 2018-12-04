@@ -23,5 +23,10 @@ function czyKlient()
     return false;
 }
 
+function TelefonKlient()
+{
+        return $_SESSION['phone'];
+    
+}
 
 

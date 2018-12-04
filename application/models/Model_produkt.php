@@ -12,7 +12,7 @@ class Model_produkt extends CI_Model {
     
     public function addProdukt($data)
     {
-        $this->db->insert('produkty',$data);
+        $this->db->insert('produkty',$data);      
     }
 
     public function removeProdukt($id)

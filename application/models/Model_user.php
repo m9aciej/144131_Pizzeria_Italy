@@ -39,9 +39,13 @@ class Model_user extends CI_Model {
     }  
    
     
-    function get_uzytkownik_by_telefon($telefon)
+    public function get_klient_id_by_telefon($Telefon)
     {
-        return $this->db->get_where('klienci',array('TELEFON'=>$telefon))->row_array();
+        $this->db->select("ID_KLIENT");
+        $this->db->from("klienci");
+        $this->db->where(array('TELEFON' => $Telefon));
+        $query = $this->db->get();
+        return $query->row();
     }
     
 }

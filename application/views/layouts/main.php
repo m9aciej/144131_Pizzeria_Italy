@@ -19,6 +19,11 @@
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link rel="stylesheet" href="<?php echo site_url('resources/css/_all-skins.min.css');?>">
+        
+        
+
+        
+        
     </head>
     
     <body class="hold-transition skin-yellow layout-boxed sidebar-mini">
@@ -99,7 +104,7 @@
                          <?php if (czyKlient()): ?>
 						<li>
                             <a href="<?php echo site_url('zamowienia') ?>">
-                                <i class="fa fa-book"></i> <span>Złóż zamówienie</span>
+                                <i class="fa fa-book"></i> <span>Twoje zamówienia</span>
                             </a>
                         </li>
                         <?php endif; ?>

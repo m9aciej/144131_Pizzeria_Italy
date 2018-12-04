@@ -54,7 +54,43 @@ class Produkt extends CI_Controller{
         }
         
         $data['produkty'] = $this->Model_produkt->getItems();
- 
+        
+        $this->load->model('Model_user'); 
+        $idKlient = $this->Model_user->get_klient_id_by_telefon(TelefonKlient());   
+        //echo IdKlient();
+        
+        if($this->input->method() == 'post')
+        {
+            $data2 = array(               
+                'ID_KLIENT' => $idKlient->ID_KLIENT,
+                'STAN' => "oczekiwanie"            
+            );       
+            $this->load->model('Model_zamowienia'); 
+            $idZamowienia = $this->Model_zamowienia->addOrder($data2);
+            //echo $idZamowienia;
+            
+            foreach ($this->input->post('produkt') as $ID_PRODUKT => $produkt) //
+            {
+                $iloscProduktow = $this->input->post('produkt')[$ID_PRODUKT];
+                $identyfikatorProduktu = $ID_PRODUKT;
+                
+                if($iloscProduktow>0){
+                    $data3 = array(               
+                        'ID_ZAMOWIENIA' => $idZamowienia,
+                        'ID_PRODUKT' => $identyfikatorProduktu,
+                        'ILOSC' => $iloscProduktow                  
+                    );
+                    $this->Model_zamowienia->addOrderToProdukty_Zamowienia($data3);
+                }
+
+            }
+            if($iloscProduktow=0){ // usuń zamowienie, gdy nie wybrano zadnych produktów
+                $this->Model_zamowienia->removeOrder($idZamowienia);
+            }
+
+            redirect('Zamowienia');
+        }
+        
            
         $data['_view'] = 'produkty/menuZalogowany_view';
         $this->load->view('layouts/main',$data);

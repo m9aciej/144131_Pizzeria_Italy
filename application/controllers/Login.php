@@ -21,7 +21,7 @@ class Login extends CI_Controller {
                        
         if ($uzytkownik->TELEFON) {
                     //login message
-                    $this->session->set_flashdata("success","You are logged in");
+                    $this->session->set_flashdata("success","Udało Ci się zalogować");
                     //set session variables
                     //$_SESSION['user_logged'] = TRUE;
                     $_SESSION['phone'] = $uzytkownik->TELEFON;

@@ -18,7 +18,7 @@ class Register extends CI_Controller {
         $this->load->model('Model_user');
         $this->Model_user->insertUser();
         //set message to be shown when registration is completed
-        $this->session->set_flashdata('success','You are registered!');
+        $this->session->set_flashdata('success','Udało Ci się zarejestrować!');
         redirect('Register/registerUser');
             
     } else {
