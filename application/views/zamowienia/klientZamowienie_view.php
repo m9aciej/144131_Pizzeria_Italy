@@ -22,9 +22,9 @@
                     <tr>
 
 						<td><?php echo $z['DATA']; ?></td>
-						<td><?php echo $z['KOSZT_CALKOWITY']; ?></td>
+						<td><?php echo $z['KOSZT_CALKOWITY']; ?> zł</td>
 						<td><?php echo $z['STAN']; ?></td>
-                        <td>123</td>
+                        <td><a href="<?php echo site_url('zamowienia/podglad/'.$z['ID_ZAMOWIENIA']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Podglad</a></td>
                     </tr>
                     <?php } ?>
                 </table>

@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',  // sql7.freemysqlhosting.net
-	'username' => 'root', // sql7264611
-	'password' => '', // dR52Zir1qh
-	'database' => 'pizzeria_db', // sql7264611
+	'hostname' => 'localhost',  // sql7.freemysqlhosting.net //localhost
+	'username' => 'root', // sql7264611 //root
+	'password' => '', // dR52Zir1qh //
+	'database' => 'pizzeria_db', // sql7264611 //pizzeria_db
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

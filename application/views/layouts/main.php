@@ -127,7 +127,7 @@
                         
                         <?php if (czyAdmin()): ?>
 						<li>
-                            <a href="<?php echo site_url('zamowienie') ?>">
+                            <a href="<?php echo site_url('zamowienia') ?>">
                                 <i class="fa fa-book"></i> <span>Zamówienia</span>
                             </a>
                         </li>

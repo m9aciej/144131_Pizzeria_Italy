@@ -2,28 +2,29 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Menu</h3>
+                <h3 class="box-title">Szczegóły zamowienia</h3>
                 <div class="box-tools">
-                    <a href="<?php echo site_url('login/loginUser'); ?>" class="btn btn-success btn-sm">Zaloguj się, aby zamówić</a>
-                    
+
+                    <a href="<?php echo site_url('zamowienia'); ?>" class="btn btn-success btn-sm">Powrót do zamowień</a>
+                                     
                 </div>
             </div>
             <div class="box-body">
                 <table class="table table-striped">
                     <tr>
-						<th>Pozycja</th>
-						<th>Nazwa</th>
+
+						<th>Nazwa produktu</th>
 						<th>Składniki</th>
-						<th>Cena</th>
+						<th>Ilość</th>
 
                     </tr>
-                    <?php $i=1; foreach($produkty as $p){ ?>
+                    <?php foreach($podglad as $p){ ?>
                     <tr>
-						<td><?php echo $i++; ?></td>
+
 						<td><?php echo $p['NAZWA']; ?></td>
 						<td><?php echo $p['OPIS']; ?></td>
-						<td><?php echo $p['CENA']; ?> zł</td>
-                        
+						<td><?php echo $p['ILOSC']; ?></td>
+
                     </tr>
                     <?php } ?>
                 </table>

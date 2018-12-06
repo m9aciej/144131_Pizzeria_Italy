@@ -21,7 +21,7 @@ class Zamowienia extends CI_Controller{
 
         if(czyAdmin())
         {
-            return $this->zamowieniaKlient();
+            return $this->zamowieniaAdmin();
         }
         
         if(!czyAdmin() && !czyKlient())
@@ -51,16 +51,50 @@ class Zamowienia extends CI_Controller{
         {
             redirect('dashboard');
         }
+              
+        $data['zamowienia'] = $this->Model_zamowienia->selectAllOrder();
+        $data['_view'] = 'zamowienia/adminZamowienie_view';
+        $this->load->view('layouts/main',$data);
         //$data['_view'] = 'klienci/klienci_view';
         //$this->load->view('layouts/main',$data);
     }
     
-    public function remove($id)
+    public function podglad($id)
     {
-        //if(!czyAdmin())
-        //{
-        //    redirect('dashboard'); // return to dashboard 
-       // }
+        if(!czyAdmin() && !czyKlient())
+        {
+            redirect('dashboard'); // return to dashboard 
+        }
+        $this->load->model('Model_zamowienia');
+        $data['podglad'] = $this->Model_zamowienia->previewOrder($id);
+        $data['_view'] = 'zamowienia/podgladZamowienie_view';
+        $this->load->view('layouts/main',$data);
+    }
+    
+         
+        
+    public function aktualizacjaStanuZamowienia($id,$data){
+        
+        $this->load->model('Model_zamowienia');
+        
+        $this->Model_zamowienia->updateOrderState($id,$data);
+
+        redirect('zamowienia');
+        
+    }
+    
+    
+    public function remove($idZamowienia)
+    {
+        if(!czyAdmin())
+        {
+            redirect('dashboard'); // return to dashboard 
+        }  
+        $this->load->model('Model_zamowienia');
+        $this->Model_zamowienia->removeOrder($idZamowienia);
+        redirect('zamowienia');
+        
+        
        // $this->Model_klient->removeKlient($id);
        // redirect('klient/index');
     }

@@ -61,6 +61,7 @@ class Produkt extends CI_Controller{
         
         if($this->input->method() == 'post')
         {
+
             $data2 = array(               
                 'ID_KLIENT' => $idKlient->ID_KLIENT,
                 'STAN' => "oczekiwanie"            

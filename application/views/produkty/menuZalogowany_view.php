@@ -33,13 +33,15 @@
                     </tr>
                     <?php } ?>
                 </table>
-                <button type="submit" style="float: right" class="btn btn-success"  >Podlicz i przejdz do zamówień</button> 
+                
+
+                <button type="submit" style="float: right" class="btn btn-success"  >Zamów</button> 
                 
                 <?= form_close() ?>
-                
+                <p name="CalkowityKoszt" min="1"  class="total_cost"> Calkowita wartość zamówienia:  </p>
                  
 <!--                Całkowita wartość zamówienia: <output type="text" class="total" value="0" /> zł-->
-                <p class="total_cost"> Calkowita wartość zamówienia:  </p> 
+                 
                 
             </div>
         </div>

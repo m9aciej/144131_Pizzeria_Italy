@@ -23,7 +23,7 @@
 						<td><?php echo $i++; ?></td>
 						<td><?php echo $p['NAZWA']; ?></td>
 						<td><?php echo $p['OPIS']; ?></td>
-						<td><?php echo $p['CENA']; ?></td>
+						<td><?php echo $p['CENA']; ?> zł</td>
                         <td>
                             <a href="<?php echo site_url('produkt/edit/'.$p['ID_PRODUKT']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edytuj</a>
                             <a href="<?php echo site_url('produkt/remove/'.$p['ID_PRODUKT']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Usuń</a>
