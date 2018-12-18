@@ -61,37 +61,36 @@ class Produkt extends CI_Controller{
         
         if($this->input->method() == 'post')
         {
-
+            $wartoscZamowienia = $this->input->post('koszt');
             $data2 = array(               
                 'ID_KLIENT' => $idKlient->ID_KLIENT,
-                'STAN' => "oczekiwanie"            
-            );       
-            $this->load->model('Model_zamowienia'); 
-            $idZamowienia = $this->Model_zamowienia->addOrder($data2);
-            //echo $idZamowienia;
+                'STAN' => "oczekiwanie", 
+                'WARTOSC_ZAMOWIENIA' => $wartoscZamowienia
+            );
             
-            foreach ($this->input->post('produkt') as $ID_PRODUKT => $produkt) //
-            {
-                $iloscProduktow = $this->input->post('produkt')[$ID_PRODUKT];
-                $identyfikatorProduktu = $ID_PRODUKT;
+            if($wartoscZamowienia>0){
+                $this->load->model('Model_zamowienia'); 
+                $idZamowienia = $this->Model_zamowienia->addOrder($data2);
+                //echo $idZamowienia;          
+                foreach ($this->input->post('produkt') as $ID_PRODUKT => $produkt) //
+                {
+                    $iloscProduktow = $this->input->post('produkt')[$ID_PRODUKT];
+                    $identyfikatorProduktu = $ID_PRODUKT;
                 
-                if($iloscProduktow>0){
-                    $data3 = array(               
-                        'ID_ZAMOWIENIA' => $idZamowienia,
-                        'ID_PRODUKT' => $identyfikatorProduktu,
-                        'ILOSC' => $iloscProduktow                  
-                    );
-                    $this->Model_zamowienia->addOrderToProdukty_Zamowienia($data3);
+                    if($iloscProduktow>0){
+                        $data3 = array(               
+                            'ID_ZAMOWIENIA' => $idZamowienia,
+                            'ID_PRODUKT' => $identyfikatorProduktu,
+                            'ILOSC' => $iloscProduktow                  
+                        );
+                        $this->Model_zamowienia->addOrderToProdukty_Zamowienia($data3);
+                    }
+
                 }
-
+                redirect('Zamowienia');
             }
-            if($iloscProduktow=0){ // usuń zamowienie, gdy nie wybrano zadnych produktów
-                $this->Model_zamowienia->removeOrder($idZamowienia);
-            }
-
-            redirect('Zamowienia');
-        }
         
+        }
            
         $data['_view'] = 'produkty/menuZalogowany_view';
         $this->load->view('layouts/main',$data);
@@ -125,6 +124,8 @@ class Produkt extends CI_Controller{
 		$this->form_validation->set_rules('nazwa','Nazwa','required|max_length[255]|is_unique[produkty.NAZWA]');
 		$this->form_validation->set_rules('skladniki','Skladniki','required|max_length[255]|is_unique[produkty.OPIS]');
 		$this->form_validation->set_rules('cena','Cena','numeric|required|max_length[255]');
+        $this->form_validation->set_rules('cena','Cena','numeric|required|max_length[255]');
+        $this->form_validation->set_rules('obrazek','Obrazek','valid_url');
 		
 		if($this->form_validation->run())     
         {   
@@ -132,7 +133,8 @@ class Produkt extends CI_Controller{
                 
             'NAZWA' => $this->input->post('nazwa'),
             'OPIS' => $this->input->post('skladniki'),
-            'CENA' =>$this->input->post('cena'),            
+            'CENA' =>$this->input->post('cena'), 
+            'OBRAZ' =>$this->input->post('obrazek'),
             );
             
             $this->Model_produkt->addProdukt($data);
@@ -160,7 +162,8 @@ class Produkt extends CI_Controller{
         $this->form_validation->set_rules('nazwa','Nazwa','required|max_length[255]');
 		$this->form_validation->set_rules('skladniki','Skladniki','required|max_length[255]');
 		$this->form_validation->set_rules('cena','Cena','numeric|required|max_length[255]');
-		
+		$this->form_validation->set_rules('obrazek','Obrazek','valid_url');
+        
 		if($this->form_validation->run())     
         {   
             $data2 = array(
@@ -168,6 +171,7 @@ class Produkt extends CI_Controller{
             'NAZWA' => $this->input->post('nazwa'),
             'OPIS' => $this->input->post('skladniki'),
             'CENA' =>$this->input->post('cena'),
+            'OBRAZ' =>$this->input->post('obrazek'),
             );
             
             $this->Model_produkt->updateProdukt($id, $data2);            

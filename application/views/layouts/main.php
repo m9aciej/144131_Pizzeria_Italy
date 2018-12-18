@@ -120,7 +120,7 @@
                         <?php if (czyAdmin()): ?>
 						<li>
                             <a href="<?php echo site_url('klient') ?>">
-                                <i class="fa fa-user"></i> <span>Klienci</span>
+                                <i class="fa fa-users"></i> <span>Klienci</span>
                             </a>
                         </li>
                         <?php endif; ?>

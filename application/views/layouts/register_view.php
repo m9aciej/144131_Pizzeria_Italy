@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class='container' style='margin-top: 40px;'>
+    <div class='container' style='margin-top: 100px;'>
         <div class='row'>
             <div class='col-md-4'>
             </div>
@@ -53,8 +53,8 @@
                                 <input type="text" class="form-control" name="Adres" id="Adres" placeholder="Adres">
                             </div> 
                         
-                            <button class="btn btn-primary" name='reg'>REGISTER</button>
-                            <a href="<?php echo site_url('login/loginUser') ?>" class="btn btn-link">Sign In</a>
+                            <button class="btn btn-primary" name='reg'>Rejestruj</button>
+                            <a href="<?php echo site_url('login/loginUser') ?>" class="btn btn-link">Przejdz do logowania</a>
 
                         <?php echo form_close() ?>
 

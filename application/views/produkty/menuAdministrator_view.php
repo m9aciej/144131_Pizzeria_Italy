@@ -12,6 +12,7 @@
                 <table class="table table-striped">
                     <tr>
 						<th>Pozycja</th>
+                        <th></th>
 						<th>Nazwa</th>
 						<th>Składniki</th>
 						<th>Cena</th>
@@ -21,6 +22,7 @@
                     <?php $i=1; foreach($produkty as $p){ ?>
                     <tr>
 						<td><?php echo $i++; ?></td>
+                        <td><img src = "<?php echo $p['OBRAZ'] ?>" width ="75" height = "75" title = "" alt = "" /></td>
 						<td><?php echo $p['NAZWA']; ?></td>
 						<td><?php echo $p['OPIS']; ?></td>
 						<td><?php echo $p['CENA']; ?> zł</td>

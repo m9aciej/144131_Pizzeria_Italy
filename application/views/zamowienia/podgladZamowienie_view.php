@@ -21,8 +21,8 @@
                     <?php foreach($podglad as $p){ ?>
                     <tr>
 
-						<td><?php echo $p['NAZWA']; ?></td>
-						<td><?php echo $p['OPIS']; ?></td>
+						<td><?php if($p['NAZWA']==''){echo "produkt usunieto";} else {echo $p['NAZWA']; }?></td>
+						<td><?php if($p['OPIS']==''){echo "produkt usunieto";} else{echo $p['OPIS'];} ?></td>
 						<td><?php echo $p['ILOSC']; ?></td>
 
                     </tr>

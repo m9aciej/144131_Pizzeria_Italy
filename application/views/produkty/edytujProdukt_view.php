@@ -28,6 +28,12 @@
 							<span class="text-danger"><?php echo form_error('cena');?></span>
 						</div>
 					</div>
+                    <div class="col-md-6">
+						<label for="obrazek" class="control-label">Obrazek (opcjonalny)</label>
+						<div class="form-group">
+							<input type="url" name="obrazek" value="<?php echo ($this->input->post('obrazek') ? $this->input->post('obrazek') : $produkty['OBRAZ']); ?>" class="form-control" id="obrazek" />
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="box-footer">

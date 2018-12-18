@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
     
     public function loginUser() {
+        
+        if(czyAdmin()||czyKlient())
+        {
+            redirect('dashboard');
+        }
+        
         $this->form_validation->set_rules('Telefon','Telefon','required');
         $this->form_validation->set_rules('Hasło','Hasło','required');
         if ($this->form_validation->run() == FALSE) {

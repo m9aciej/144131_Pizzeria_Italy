@@ -52,9 +52,9 @@
                                     </select>
                             </div>
                         
-                            <button type="submit" class="btn btn-primary">LOGIN</button>
-                            <a href="<?php echo site_url('Register\registerUser') ?>" class="btn btn-link">Register</a>
-                            <a href="<?php echo site_url('dashboard') ?>" class="btn btn-link">guest</a>
+                            <button type="submit" class="btn btn-primary">Zaloguj się</button>
+                            <a href="<?php echo site_url('Register\registerUser') ?>" class="btn btn-link">Zarejestruj się</a>
+                            <a href="<?php echo site_url('dashboard') ?>" class="btn btn-link">gościnnie</a>
                         <?php echo form_close() ?>
 
                     </div>

@@ -12,6 +12,7 @@
                 <table class="table table-striped">
                     <tr>
 						<th>Pozycja</th>
+                        <th></th>
 						<th>Nazwa</th>
 						<th>Składniki</th>
 						<th>Cena</th>
@@ -21,6 +22,7 @@
                     <?php $i=1; foreach($produkty as $p){ ?>
                     <tr>
 						<td><?php echo $i++; ?></td>
+                        <td><img src = "<?php echo $p['OBRAZ'] ?>" width ="75" height = "75" title = "" alt = "" /></td>
 						<td><?php echo $p['NAZWA']; ?></td>
 						<td><?php echo $p['OPIS']; ?></td>
 						<td><label class="lab<?=$i-1 ?>" ><?php echo $p['CENA']?></label> zł</td> 
@@ -33,7 +35,7 @@
                     </tr>
                     <?php } ?>
                 </table>
-                
+               <input type="hidden" class = "total" name = "koszt" /> <!-- koszt calkowity, ukryty input -->
 
                 <button type="submit" style="float: right" class="btn btn-success"  >Zamów</button> 
                 
@@ -73,6 +75,6 @@ $(document).on("change",function() {
         tmp = 0;
     }
     totalCost.textContent = `Calkowita wartość zamowienia: ${sum} zł`
-//    $(".total").val(sum);
+    $(".total").val(sum); // przekazanie calkowitego kosztu do input
 });
 </script>

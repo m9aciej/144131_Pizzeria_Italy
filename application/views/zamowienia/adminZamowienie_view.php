@@ -24,13 +24,13 @@
                     <tr>
 
 						<td><?php echo $z['DATA']; ?></td>
-						<td><?php echo $z['TELEFON']; ?></td>
-						<td><?php echo $z['ADRES']; ?></td>
+						<td><?php if($z['TELEFON']==''){echo "usunięto klienta";} else {echo $z['TELEFON']; } ?></td>
+						<td><?php if($z['ADRES']==''){echo "usunięto klienta";} else {echo $z['ADRES']; } ?></td>
                         <td><?php echo $z['KOSZT_CALKOWITY']; ?> zł</td>
                         <td><?php echo $z['STAN']; ?> 
                     <br>
                         <a href="<?php echo site_url('zamowienia/aktualizacjaStanuZamowienia/'.$z['ID_ZAMOWIENIA'].'/Realizacja'); ?>" class="btn btn-success btn-xs"> Realizacja</a>
-                        <a href="<?php echo site_url('zamowienia/aktualizacjaStanuZamowienia/'.$z['ID_ZAMOWIENIA'].'/Dostarczane'); ?>" class="btn btn-success btn-xs"> Dostarczane</a> 
+                        <a href="<?php echo site_url('zamowienia/aktualizacjaStanuZamowienia/'.$z['ID_ZAMOWIENIA'].'/Dostarczanie'); ?>" class="btn btn-success btn-xs"> Dostarczanie</a> 
                         <a href="<?php echo site_url('zamowienia/aktualizacjaStanuZamowienia/'.$z['ID_ZAMOWIENIA'].'/Dostarczono'); ?>" class="btn btn-success btn-xs"> Dostarczono</a>                    
                         </td>
                         <td>

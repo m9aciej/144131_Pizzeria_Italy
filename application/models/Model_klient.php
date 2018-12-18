@@ -13,6 +13,9 @@ class Model_klient extends CI_Model {
    
     public function removeKlient($id)
     {
+        $this->db->where('ID_KLIENT',$id); // zmien nie dzila
+        $this->db->update('zamowienia',array('ID_KLIENT'=>NULL)); // usówanie powiązań w bazie danych
+        
         $this->db->delete('klienci',array('ID_KLIENT'=>$id));
     }
     

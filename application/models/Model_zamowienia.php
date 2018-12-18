@@ -30,7 +30,8 @@ class Model_zamowienia extends CI_Model {
     public function selectAllClientOrder($id)
     {                 
         //$this->db->delete('zamowienia',array('ID_ZAMOWIENIA'=>$id));
-        $sql = "SELECT zamowienia.ID_ZAMOWIENIA, zamowienia.DATA, SUM(produkty_zamowienia.ILOSC*produkty.CENA) AS KOSZT_CALKOWITY, zamowienia.STAN FROM produkty INNER JOIN produkty_zamowienia ON produkty.ID_PRODUKT=produkty_zamowienia.ID_PRODUKT INNER JOIN zamowienia ON produkty_zamowienia.ID_ZAMOWIENIA=zamowienia.ID_ZAMOWIENIA WHERE zamowienia.ID_KLIENT = ? GROUP BY produkty_zamowienia.ID_ZAMOWIENIA DESC";
+//        $sql = "SELECT zamowienia.ID_ZAMOWIENIA, zamowienia.DATA, SUM(produkty_zamowienia.ILOSC*produkty.CENA) AS KOSZT_CALKOWITY, zamowienia.STAN FROM produkty INNER JOIN produkty_zamowienia ON produkty.ID_PRODUKT=produkty_zamowienia.ID_PRODUKT INNER JOIN zamowienia ON produkty_zamowienia.ID_ZAMOWIENIA=zamowienia.ID_ZAMOWIENIA WHERE zamowienia.ID_KLIENT = ? GROUP BY produkty_zamowienia.ID_ZAMOWIENIA DESC";
+        $sql = "SELECT zamowienia.ID_ZAMOWIENIA, zamowienia.DATA, zamowienia.WARTOSC_ZAMOWIENIA AS KOSZT_CALKOWITY, zamowienia.STAN FROM zamowienia WHERE zamowienia.ID_KLIENT = ?  ORDER BY ID_ZAMOWIENIA DESC ";
         return $this->db->query($sql,array($id))->result_array();
         
         //return $this->db->get()->result_array(); "For custom query in Codeigniter you cannot use get method after."-rozwiązanie   
@@ -39,7 +40,8 @@ class Model_zamowienia extends CI_Model {
     public function selectAllOrder()
     {                 
        //$this->db->delete('zamowienia',array('ID_ZAMOWIENIA'=>$id));
-       $sql = "SELECT zamowienia.ID_ZAMOWIENIA, zamowienia.DATA, klienci.TELEFON, klienci.ADRES, SUM(produkty_zamowienia.ILOSC*produkty.CENA) AS KOSZT_CALKOWITY, zamowienia.STAN FROM produkty INNER JOIN produkty_zamowienia ON produkty.ID_PRODUKT=produkty_zamowienia.ID_PRODUKT INNER JOIN zamowienia ON produkty_zamowienia.ID_ZAMOWIENIA=zamowienia.ID_ZAMOWIENIA INNER JOIN klienci ON zamowienia.ID_KLIENT = klienci.ID_KLIENT GROUP BY produkty_zamowienia.ID_ZAMOWIENIA DESC";
+//       $sql = "SELECT zamowienia.ID_ZAMOWIENIA, zamowienia.DATA, klienci.TELEFON, klienci.ADRES, SUM(produkty_zamowienia.ILOSC*produkty.CENA) AS KOSZT_CALKOWITY, zamowienia.STAN FROM produkty INNER JOIN produkty_zamowienia ON produkty.ID_PRODUKT=produkty_zamowienia.ID_PRODUKT INNER JOIN zamowienia ON produkty_zamowienia.ID_ZAMOWIENIA=zamowienia.ID_ZAMOWIENIA INNER JOIN klienci ON zamowienia.ID_KLIENT = klienci.ID_KLIENT GROUP BY produkty_zamowienia.ID_ZAMOWIENIA DESC";
+        $sql ="SELECT zamowienia.ID_ZAMOWIENIA, zamowienia.DATA, klienci.TELEFON, klienci.ADRES, zamowienia.WARTOSC_ZAMOWIENIA AS KOSZT_CALKOWITY, zamowienia.STAN FROM zamowienia LEFT JOIN klienci ON zamowienia.ID_KLIENT = klienci.ID_KLIENT ORDER BY zamowienia.ID_ZAMOWIENIA DESC";
        return $this->db->query($sql)->result_array();
     
        //return $this->db->get()->result_array(); "For custom query in Codeigniter you cannot use get method after."-rozwiązanie   
@@ -47,7 +49,8 @@ class Model_zamowienia extends CI_Model {
     
     public function previewOrder($idOrder){
         
-        $sql = "SELECT produkty.NAZWA, produkty.OPIS, produkty_zamowienia.ILOSC FROM produkty INNER JOIN produkty_zamowienia ON produkty.ID_PRODUKT=produkty_zamowienia.ID_PRODUKT  WHERE produkty_zamowienia.ID_ZAMOWIENIA = ?";
+//        $sql = "SELECT produkty.NAZWA, produkty.OPIS, produkty_zamowienia.ILOSC FROM produkty INNER JOIN produkty_zamowienia ON produkty.ID_PRODUKT=produkty_zamowienia.ID_PRODUKT  WHERE produkty_zamowienia.ID_ZAMOWIENIA = ?";
+        $sql = "SELECT produkty.NAZWA, produkty.OPIS, produkty_zamowienia.ILOSC FROM produkty RIGHT JOIN produkty_zamowienia ON produkty.ID_PRODUKT=produkty_zamowienia.ID_PRODUKT WHERE produkty_zamowienia.ID_ZAMOWIENIA = ?";
         return $this->db->query($sql,array($idOrder))->result_array();
     }
     
