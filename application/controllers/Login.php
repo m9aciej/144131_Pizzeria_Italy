@@ -12,7 +12,9 @@ class Login extends CI_Controller {
         $this->form_validation->set_rules('Telefon','Telefon','required');
         $this->form_validation->set_rules('Hasło','Hasło','required');
         if ($this->form_validation->run() == FALSE) {
-            $this->load->view('layouts/login_view');
+            
+            $data['_view'] = 'dashboard';
+            $this->load->view('layouts/login_view',$data);
         } 
         else {
                    
